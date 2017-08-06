@@ -1,4 +1,4 @@
-FROM armhf/python:3.5-alpine
+FROM arm32v6/python:3.6-alpine3.6
 
 LABEL org.label-schema.description="A Radicale image for the Raspberry Pi." \
       org.label-schema.name="rpi-radicale" \
@@ -14,7 +14,7 @@ VOLUME /collections /config
 
 ADD entrypoint.py README.md /
 
-ENV RADICALE_VERSION=1.1.1
+ENV RADICALE_VERSION=1.1.6
 RUN apk add --no-cache apr apr-util libffi su-exec tini \
  && apk add --no-cache --virtual .build-deps apache2-utils ca-certificates build-base libffi-dev \
  && pip install --no-cache-dir bcrypt dulwich passlib radicale==$RADICALE_VERSION \
